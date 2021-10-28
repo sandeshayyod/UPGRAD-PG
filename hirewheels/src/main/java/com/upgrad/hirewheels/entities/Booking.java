@@ -39,6 +39,7 @@ public class Booking {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+
     @Override
     public String toString() {
         return "Booking{" +
