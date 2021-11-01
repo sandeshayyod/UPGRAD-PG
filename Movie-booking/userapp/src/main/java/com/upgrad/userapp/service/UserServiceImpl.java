@@ -1,6 +1,6 @@
 package com.upgrad.userapp.service;
 
-import com.upgrad.userapp.dao.UserDao;
+import com.upgrad.userapp.dao.UserH2Dao;
 import com.upgrad.userapp.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserH2Dao userDao;
 
     @Override
     public User createUser(User user) {
@@ -22,12 +22,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserBasedOnId(int id) {
-        return userDao.getById(id);
+        return userDao.findById(id).get();
     }
 
     @Override
     public User updateUser(User user) {
-        Optional<User> savedUserOptional = userDao.findById(user.getUserId());
+        Optional<User> savedUserOptional = userDao.findByUserId(user.getUserId());
         if (savedUserOptional.isPresent()) {
             User savedUser = savedUserOptional.get();
             savedUser.setUsername(user.getUsername());

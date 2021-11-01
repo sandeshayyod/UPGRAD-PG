@@ -1,6 +1,6 @@
 package com.upgrad.movieapp.service;
 
-import com.upgrad.movieapp.dao.MovieDao;
+import com.upgrad.movieapp.dao.MovieH2Dao;
 import com.upgrad.movieapp.entity.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
-    private MovieDao movieDao;
+    private MovieH2Dao movieDao;
 
     @Override
     public Movie acceptMovieDetails(Movie movie) {

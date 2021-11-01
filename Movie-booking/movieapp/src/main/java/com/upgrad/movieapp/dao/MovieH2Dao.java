@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * This layer will be used to interact with Database
  */
-public interface MovieDao extends JpaRepository<Movie, Integer> {
+public interface MovieH2Dao extends JpaRepository<Movie, Integer> {
 
 }

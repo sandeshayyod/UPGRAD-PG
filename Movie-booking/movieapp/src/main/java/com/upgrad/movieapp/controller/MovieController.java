@@ -25,7 +25,7 @@ public class MovieController {
     private ModelMapper modelMapper;
 
     @PostMapping(value = "/movies", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<MovieDto> createMovie(MovieDto movieDto) {
+    public ResponseEntity<MovieDto> createMovie(@RequestBody MovieDto movieDto) {
         Movie movie = modelMapper.map(movieDto, Movie.class);
         Movie savedMovie = movieService.acceptMovieDetails(movie);
         MovieDto savedMovieDto = modelMapper.map(savedMovie, MovieDto.class);
@@ -33,7 +33,7 @@ public class MovieController {
     }
 
     @PostMapping(value = "/movies/all", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<MovieDto>> createAllMovie(List<MovieDto> movieDtos) {
+    public ResponseEntity<List<MovieDto>> createAllMovie(@RequestBody List<MovieDto> movieDtos) {
         List<Movie> movies = movieDtos.stream()
                 .map(movieDto -> modelMapper.map(movieDto, Movie.class))
                 .collect(Collectors.toList());

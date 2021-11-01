@@ -3,6 +3,7 @@ package com.upgrad.movieapp.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.context.annotation.Profile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
