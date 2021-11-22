@@ -8,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Log4j2
@@ -55,9 +53,9 @@ public class TheatreController {
     }
 
     @GetMapping(value = "/checkAvailable", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> checkAvailable(@PathParam(value = "theatreId") String theatreId,
-                                                  @PathParam(value = "movieId") String movieId,
-                                                  @PathParam(value = "seats") String seats) {
+    public ResponseEntity<Boolean> checkAvailable(@RequestParam(value = "theatreId") String theatreId,
+                                                  @RequestParam(value = "movieId") String movieId,
+                                                  @RequestParam(value = "seats") String seats) {
         boolean isAvailable = theatreService.checkAvailable(Long.parseLong(theatreId), Long.parseLong(movieId), Long.parseLong(seats));
         if (!isAvailable) {
             log.info("Theatre with " + theatreId + " and movie with " + movieId + " not available for bookings");
@@ -66,18 +64,18 @@ public class TheatreController {
     }
 
     @PutMapping(value = "/bookSeat", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> bookTheatreSeat(@PathParam(value = "theatreId") String theatreId,
-                                                 @PathParam(value = "movieId") String movieId,
-                                                 @PathParam(value = "seats") String seats) {
+    public ResponseEntity<Boolean> bookTheatreSeat(@RequestParam(value = "theatreId") String theatreId,
+                                                 @RequestParam(value = "movieId") String movieId,
+                                                 @RequestParam(value = "seats") String seats) {
         boolean isBooked = theatreService.bookSeat(Long.parseLong(theatreId), Long.parseLong(movieId),
                 Long.parseLong(seats));
         return new ResponseEntity<>(isBooked, HttpStatus.ACCEPTED);
     }
 
     @PutMapping(value = "/cancelSeat", produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> cancelTheatreSeat(@PathParam(value = "theatreId") String theatreId,
-                                                 @PathParam(value = "movieId") String movieId,
-                                                 @PathParam(value = "seats") String seats) {
+    public ResponseEntity<Boolean> cancelTheatreSeat(@RequestParam(value = "theatreId") String theatreId,
+                                                 @RequestParam(value = "movieId") String movieId,
+                                                 @RequestParam(value = "seats") String seats) {
         boolean isBooked = theatreService.cancelSeat(Long.parseLong(theatreId), Long.parseLong(movieId),
                 Long.parseLong(seats));
         return new ResponseEntity<>(isBooked, HttpStatus.ACCEPTED);
