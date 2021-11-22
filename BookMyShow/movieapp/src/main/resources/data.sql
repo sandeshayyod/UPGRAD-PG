@@ -1,0 +1,2 @@
+INSERT INTO movie (movie_id, movie_name, movie_desc, release_date, duration, genre, language)
+VALUES (1, 'Avatar', 'A story in pandora', parsedatetime('17-09-2012 00:00:00.00', 'dd-MM-yyyy hh:mm:ss.SS'), 180, 'SCI-FI', 'English');
