@@ -1,0 +1,29 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+      routes:
+        - id: library-service
+          uri: lb://library-service
+          predicates:
+            - Path=/library-app/**
+
+        - id: book-service
+          uri: lb://book-service
+          predicates:
+            - Path=/book-app/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
