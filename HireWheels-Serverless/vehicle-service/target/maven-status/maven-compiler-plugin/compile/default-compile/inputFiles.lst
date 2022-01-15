@@ -1,0 +1,9 @@
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\vehicle-service\vehicle-service\src\main\java\com\upgrad\vehicle\Application.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\vehicle-service\vehicle-service\src\main\java\com\upgrad\vehicle\config\DynamoDBConfig.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\vehicle-service\vehicle-service\src\main\java\com\upgrad\vehicle\repository\VehicleRepository.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\vehicle-service\vehicle-service\src\main\java\com\upgrad\vehicle\StreamLambdaHandler.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\vehicle-service\vehicle-service\src\main\java\com\upgrad\vehicle\entity\Vehicle.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\vehicle-service\vehicle-service\src\main\java\com\upgrad\vehicle\service\VehicleService.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\vehicle-service\vehicle-service\src\main\java\com\upgrad\vehicle\controller\VehicleController.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\vehicle-service\vehicle-service\src\main\java\com\upgrad\vehicle\dto\VehicleDTO.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\vehicle-service\vehicle-service\src\main\java\com\upgrad\vehicle\controller\PingController.java

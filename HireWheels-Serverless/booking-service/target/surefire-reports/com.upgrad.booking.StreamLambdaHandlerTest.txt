@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.upgrad.booking.StreamLambdaHandlerTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.261 s - in com.upgrad.booking.StreamLambdaHandlerTest

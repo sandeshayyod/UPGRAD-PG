@@ -1,0 +1,9 @@
+com\upgrad\user\entity\User.class
+com\upgrad\user\repository\UserRepository.class
+com\upgrad\user\dto\UserDTO.class
+com\upgrad\user\service\UserService.class
+com\upgrad\user\StreamLambdaHandler.class
+com\upgrad\user\controller\UserController.class
+com\upgrad\user\controller\PingController.class
+com\upgrad\user\config\DynamoDBConfig.class
+com\upgrad\user\Application.class

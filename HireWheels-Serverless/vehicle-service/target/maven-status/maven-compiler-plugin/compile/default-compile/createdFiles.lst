@@ -1,0 +1,9 @@
+com\upgrad\vehicle\entity\Vehicle.class
+com\upgrad\vehicle\Application.class
+com\upgrad\vehicle\StreamLambdaHandler.class
+com\upgrad\vehicle\config\DynamoDBConfig.class
+com\upgrad\vehicle\dto\VehicleDTO.class
+com\upgrad\vehicle\controller\PingController.class
+com\upgrad\vehicle\repository\VehicleRepository.class
+com\upgrad\vehicle\controller\VehicleController.class
+com\upgrad\vehicle\service\VehicleService.class

@@ -1,0 +1,6 @@
+com\upgrad\booking\notification\App.class
+com\upgrad\booking\notification\dto\VehicleDTO.class
+com\upgrad\booking\notification\service\UserService.class
+com\upgrad\booking\notification\dto\BookingDto.class
+com\upgrad\booking\notification\service\VehicleService.class
+com\upgrad\booking\notification\dto\UserDTO.class

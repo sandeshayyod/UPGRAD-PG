@@ -1,0 +1,8 @@
+org\example\movie\repository\MovieRepository.class
+org\example\movie\controller\MovieController.class
+org\example\movie\entities\Movie.class
+org\example\movie\config\DynamoDBConfig.class
+org\example\movie\controller\PingController.class
+org\example\movie\Application.class
+org\example\movie\dto\MovieDto.class
+org\example\movie\StreamLambdaHandler.class

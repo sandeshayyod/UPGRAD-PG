@@ -1,0 +1,9 @@
+org\example\booking\config\DynamoDBConfig.class
+org\example\booking\repository\BookingRepository.class
+org\example\booking\dto\BookingDto.class
+org\example\booking\StreamLambdaHandler.class
+org\example\booking\controller\PingController.class
+org\example\booking\Application.class
+org\example\booking\controller\BookingController.class
+org\example\booking\entity\Booking.class
+org\example\booking\service\BookingService.class

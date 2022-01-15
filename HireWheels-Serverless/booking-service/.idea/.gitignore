@@ -1,0 +1,8 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Datasource local storage ignored files
+/../../../../../../../../../:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\HireWheels-Serverless\booking-service\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

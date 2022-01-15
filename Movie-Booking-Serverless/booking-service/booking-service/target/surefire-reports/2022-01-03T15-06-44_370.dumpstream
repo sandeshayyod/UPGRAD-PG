@@ -1,0 +1,15 @@
+# Created at 2022-01-03T15:06:45.403
+WARNING: An illegal reflective access operation has occurred
+
+# Created at 2022-01-03T15:06:45.404
+WARNING: Illegal reflective access by com.fasterxml.jackson.module.afterburner.util.MyClassLoader (file:/C:/Users/Sandesh%20Ayyod/.m2/repository/com/fasterxml/jackson/module/jackson-module-afterburner/2.10.3/jackson-module-afterburner-2.10.3.jar) to method java.lang.ClassLoader.findLoadedClass(java.lang.String)
+
+# Created at 2022-01-03T15:06:45.404
+WARNING: Please consider reporting this to the maintainers of com.fasterxml.jackson.module.afterburner.util.MyClassLoader
+
+# Created at 2022-01-03T15:06:45.405
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+
+# Created at 2022-01-03T15:06:45.410
+WARNING: All illegal access operations will be denied in a future release
+

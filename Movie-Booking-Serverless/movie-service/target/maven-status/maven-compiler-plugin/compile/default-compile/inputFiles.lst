@@ -1,0 +1,8 @@
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\Movie-Booking-Serverless\movie-service\src\main\java\org\example\movie\dto\MovieDto.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\Movie-Booking-Serverless\movie-service\src\main\java\org\example\movie\Application.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\Movie-Booking-Serverless\movie-service\src\main\java\org\example\movie\config\DynamoDBConfig.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\Movie-Booking-Serverless\movie-service\src\main\java\org\example\movie\StreamLambdaHandler.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\Movie-Booking-Serverless\movie-service\src\main\java\org\example\movie\entities\Movie.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\Movie-Booking-Serverless\movie-service\src\main\java\org\example\movie\repository\MovieRepository.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\Movie-Booking-Serverless\movie-service\src\main\java\org\example\movie\controller\MovieController.java
+D:\Sandesh WorkSpace\UpGrad\PG Diploma\Repos\UPGRAD-PG\Movie-Booking-Serverless\movie-service\src\main\java\org\example\movie\controller\PingController.java

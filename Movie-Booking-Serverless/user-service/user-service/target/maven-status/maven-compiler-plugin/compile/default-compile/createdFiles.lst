@@ -1,0 +1,8 @@
+org\example\user\dto\UserDto.class
+org\example\user\StreamLambdaHandler.class
+org\example\user\config\DynamoDBConfig.class
+org\example\user\controller\PingController.class
+org\example\user\repository\UserRepository.class
+org\example\user\Application.class
+org\example\user\controller\UserController.class
+org\example\user\entities\User.class
