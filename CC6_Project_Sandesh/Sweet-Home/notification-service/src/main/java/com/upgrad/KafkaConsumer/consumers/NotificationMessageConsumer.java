@@ -14,7 +14,7 @@ public class NotificationMessageConsumer {
     public static void main(String[] args) {
         //Consumer Properties̥
         Properties props = new Properties();
-        props.setProperty("bootstrap.servers", "ec2-user@ec2-54-167-138-71.compute-1.amazonaws.com:9092");
+        props.setProperty("bootstrap.servers", "ubuntu@ec2-34-232-65-39.compute-1.amazonaws.com:9092");
         props.setProperty("group.id", "test");
         props.setProperty("enable.auto.commit", "true");
         props.setProperty("auto.commit.interval.ms", "1000");

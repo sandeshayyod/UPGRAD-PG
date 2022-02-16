@@ -1,0 +1,93 @@
+version: '3.3'
+# Define services
+services:
+# App backend service
+  paymentsvc:
+    build: paymentservice
+    container_name: paymentsvc
+    image: sweethome/paymentsvc:1.0.0
+    ports:
+    - "8083:8083" # Forward the exposed port 8083 to port 8083 on the host machine
+    networks:
+      - sweethomeservicenet
+    environment:
+      MYSQL_HOST: cc7-sweet-home.cunbl2aaitp4.us-east-1.rds.amazonaws.com
+      EUREKA_HOST_NAME: 34.232.65.39
+    depends_on:
+      - eurekaserver
+
+  bookingsvc:
+    build: bookingservice
+    container_name: bookingsvc
+    image: sweethome/bookingsvc:1.0.0
+    ports:
+    - "8080:8080" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - sweethomeservicenet
+    environment:
+      MYSQL_HOST: cc7-sweet-home.cunbl2aaitp4.us-east-1.rds.amazonaws.com
+      EUREKA_HOST_NAME: 34.232.65.39
+      KAFKA_HOST_NAME: ec2-34-232-65-39.compute-1.amazonaws.com
+    depends_on:
+      - eurekaserver 
+      - kafka
+      
+   notificationsvc:
+    build: notificationservice
+    container_name: notificationsvc
+    image: sweethome/notificationsvc:1.0.0
+    ports:
+    - "8084:8084"
+    networks:
+      - sweethomeservicenet
+    depends_on:
+      - kafka
+
+  eurekaserver:
+    build: eurekaserver
+    container_name: eurekaserver
+    image: sweethome/eurekaserver:1.0.0
+    ports:
+    - "8761:8761" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - sweethomeservicenet
+    environment:
+      EUREKA_HOST_NAME: 34.232.65.39
+
+  kafka:
+    image: 'bitnami/kafka:latest'
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka_data:/bitnami"
+    environment:
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://ec2-34-232-65-39.compute-1.amazonaws.com:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+    depends_on:
+      - zookeeper
+    networks:
+      - sweethomeservicenet
+
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    volumes:
+      - "zookeeper_data:/bitnami"
+    ports:
+      - "2181:2181"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - sweethomeservicenet
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+
+networks:
+  sweethomeservicenet:
+    driver: bridge
+

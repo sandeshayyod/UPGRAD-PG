@@ -1,0 +1,101 @@
+version: '3.3'
+# Define services
+services:
+# App backend service
+  usersvc:
+# Configuration for building the docker image for the backend service
+    build: user-Eureka
+    container_name: usersvc
+    image: movieapp/usersvc:1.0.0
+    ports:
+    - "8082:8082" # Forward the exposed port 8080 to port 8080 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      MYSQL_HOST: database
+      EUREKA_HOST_NAME: 18.205.192.43
+    depends_on:
+      - database # This service depends on mysql. Start that first.
+      - serviceregistry # This service depends on mysql. Start that first.
+      - configserver # This service depends on mysql. Start that first.
+# Frontend Service
+  moviesvc:
+    build: movieapp-ApiGateway
+    container_name: moviesvc
+    image: movieapp/moviesvc:1.0.0
+    ports:
+    - "8081:8081" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      MYSQL_HOST: database
+      EUREKA_HOST_NAME: 18.205.192.43
+    depends_on:
+      - database # This service depends on mysql. Start that first.
+      - serviceregistry # This service depends on mysql. Start that first.
+      - configserver # This service depends on mysql. Start that first.
+  theatresvc:
+    build: theatre-Eureka
+    container_name: theatresvc
+    image: movieapp/theatresvc:1.0.0
+    ports:
+    - "8083:8083" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      MYSQL_HOST: database
+      EUREKA_HOST_NAME: 18.205.192.43
+    depends_on:
+      - database # This service depends on mysql. Start that first.
+      - serviceregistry # This service depends on mysql. Start that first.
+      - configserver # This service depends on mysql. Start that first.
+  configserver:
+    build: Config-Server-master
+    container_name: configserver
+    image: movieapp/configserver:1.0.0
+    ports:
+    - "8888:8888" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      MYSQL_HOST: database
+      EUREKA_HOST_NAME: 18.205.192.43
+  apigateway:
+    build: api-gateway-master
+    container_name: apigateway
+    image: movieapp/apigateway:1.0.0
+    ports:
+    - "9191:9191" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      MYSQL_HOST: database
+      EUREKA_HOST_NAME: 18.205.192.43
+    depends_on:
+      - serviceregistry # This service depends on mysql. Start that first.
+  serviceregistry:
+    build: service_registry 
+    container_name: serviceregistry
+    image: movieapp/serviceregistry:1.0.0
+    ports:
+    - "8761:8761" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - microservicesnet
+    environment:
+      MYSQL_HOST: database
+      EUREKA_HOST_NAME: 18.205.192.43
+  database:
+    image: mysql:8.0
+    container_name: database
+    ports:
+    - "3306:3306"
+    networks:
+      - microservicesnet
+    environment:
+      MYSQL_DATABASE: upgradpg
+      MYSQL_USER: upgradpg
+      MYSQL_PASSWORD: upgradpg
+      MYSQL_ROOT_PASSWORD: password
+networks:
+  microservicesnet:
+    driver: bridge

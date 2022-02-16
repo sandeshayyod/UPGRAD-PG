@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${EUREKA_HOST_NAME:localhost}:8761/eureka/
+  instance:
+    hostname: ${EUREKA_HOST_NAME:localhost}
