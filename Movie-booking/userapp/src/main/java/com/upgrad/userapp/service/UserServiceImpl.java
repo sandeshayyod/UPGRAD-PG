@@ -1,6 +1,7 @@
 package com.upgrad.userapp.service;
 
 import com.upgrad.userapp.dao.UserH2Dao;
+import com.upgrad.userapp.dao.UserMongoDao;
 import com.upgrad.userapp.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserH2Dao userDao;
+    private UserMongoDao userDao;
 
     @Override
     public User createUser(User user) {

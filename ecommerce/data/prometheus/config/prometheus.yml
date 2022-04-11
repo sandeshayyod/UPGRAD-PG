@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s
+  external_labels:
+    monitor: upgrad-monitor
+
+scrape_configs:
+  - job_name: ecommerce-app
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: [ payment-service:8060, inventory-service:8070, order-service:8080, notification-service:8090 ]

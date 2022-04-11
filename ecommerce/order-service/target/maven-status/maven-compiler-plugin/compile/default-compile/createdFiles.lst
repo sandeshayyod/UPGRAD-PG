@@ -1,0 +1,8 @@
+com\upgrad\orderservice\OrderService.class
+com\upgrad\orderservice\rest\NotificationServiceClient.class
+com\upgrad\orderservice\service\OrderService.class
+com\upgrad\orderservice\rest\InventoryServiceClient.class
+com\upgrad\orderservice\model\OrderException.class
+com\upgrad\orderservice\controller\OrderController.class
+com\upgrad\orderservice\service\OrderServiceImpl.class
+com\upgrad\orderservice\rest\PaymentServiceClient.class

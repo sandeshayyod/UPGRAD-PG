@@ -26,7 +26,7 @@ public class ProductsController {
     @Autowired
     private ProductsService service;
 
-    @PreAuthorize("hasAnyAuthority('READ')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/products/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ProductDto> getProductById(@PathVariable(name = "id") int id) {
         Product product = service.getProductBasedOnId(id);

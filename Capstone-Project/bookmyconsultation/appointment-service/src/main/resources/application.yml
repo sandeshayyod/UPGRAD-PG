@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: appointment-service
+  data:
+    mongodb:
+      uri: mongodb://${MONGODB_HOST_NAME:localhost}
+      database: bmcDB
+server:
+  port: 8082
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${EUREKA_HOST_NAME:localhost}:8761/eureka
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    health-check-url-path: /actuator/info
+
+#actuator checkup
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+      base-path: /actuator
+  info:
+    env:
+      enabled: true

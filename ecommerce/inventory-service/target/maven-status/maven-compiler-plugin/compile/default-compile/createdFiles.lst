@@ -1,0 +1,5 @@
+com\upgrad\inventoryservice\model\InventoryException.class
+com\upgrad\inventoryservice\InventoryService.class
+com\upgrad\inventoryservice\service\InventoryServiceImpl.class
+com\upgrad\inventoryservice\controller\InventoryController.class
+com\upgrad\inventoryservice\service\InventoryService.class

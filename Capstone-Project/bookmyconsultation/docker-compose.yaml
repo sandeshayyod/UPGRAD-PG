@@ -1,0 +1,174 @@
+version: '3.3'
+# Define services
+services:
+  # App backend service
+  doctor-service:
+    build: doctor-service
+    container_name: doctor-service
+    image: bookmyconsultation/doctor-service:1.0.0
+    ports:
+      - "8080:8080"
+    networks:
+      - bookmyconsulationnet
+    environment:
+      EUREKA_HOST_NAME: eureka-server
+      MONGODB_HOST_NAME: <<update ec3 instance public ipv4 >>
+      KAFKA_HOST_NAME: kafka
+      S3_ACCESS_KEY: <<update iam access key for s3>>
+      S3_SECRET_KEY: <<update iam secret key for s3>>
+    depends_on:
+      - eureka-server
+      - kafka
+
+  user-service:
+    build: user-service
+    container_name: user-service
+    image: bookmyconsultation/user-service:1.0.0
+    ports:
+      - "8083:8083"
+    networks:
+      - bookmyconsulationnet
+    environment:
+      EUREKA_HOST_NAME: eureka-server
+      MONGODB_HOST_NAME: <<update ec3 instance public ipv4 >>
+      KAFKA_HOST_NAME: kafka
+      S3_ACCESS_KEY: <<update iam access key for s3>>
+      S3_SECRET_KEY: <<update iam secret key for s3>>
+    depends_on:
+      - eureka-server
+      - kafka
+
+  appointment-service:
+    build: appointment-service
+    container_name: appointment-service
+    image: bookmyconsultation/appointment-service:1.0.0
+    ports:
+      - "8082:8082"
+    networks:
+      - bookmyconsulationnet
+    environment:
+      EUREKA_HOST_NAME: eureka-server
+      MONGODB_HOST_NAME: <<update ec3 instance public ipv4 >>
+      KAFKA_HOST_NAME: kafka
+    depends_on:
+      - eureka-server
+      - user-service
+      - doctor-service
+      - kafka
+
+  payment-service:
+    build: payment-service
+    container_name: payment-service
+    image: bookmyconsultation/payment-service:1.0.0
+    ports:
+      - "8086:8086"
+    networks:
+      - bookmyconsulationnet
+    environment:
+      EUREKA_HOST_NAME: eureka-server
+      MONGODB_HOST_NAME: <<update ec3 instance public ipv4 >>
+      KAFKA_HOST_NAME: kafka
+      APPOINTMENT_SERVICE_HOST_NAME: BMC-GATEWAY
+    depends_on:
+      - eureka-server
+      - appointment-service
+      - kafka
+
+  rating-service:
+    build: rating-service
+    container_name: rating-service
+    image: bookmyconsultation/rating-service:1.0.0
+    ports:
+      - "8084:8084"
+    networks:
+      - bookmyconsulationnet
+    environment:
+      EUREKA_HOST_NAME: eureka-server
+      MONGODB_HOST_NAME: <<update ec3 instance public ipv4 >>
+      KAFKA_HOST_NAME: kafka
+    depends_on:
+      - eureka-server
+      - kafka
+
+  bmc-gateway:
+    build: bmc-gateway
+    container_name: bmc-gateway
+    image: bookmyconsultation/bmc-gateway:1.0.0
+    ports:
+      - "9191:9191"
+    networks:
+      - bookmyconsulationnet
+    environment:
+      EUREKA_HOST_NAME: eureka-server
+    depends_on:
+      - eureka-server
+      - doctor-service
+
+  email-notification-service:
+    build: email-notification-service
+    container_name: email-notification-service
+    image: bookmyconsultation/email-notification-service:1.0.0
+    ports:
+      - "8087:8087"
+    networks:
+      - bookmyconsulationnet
+    environment:
+      EUREKA_HOST_NAME: eureka-server
+      KAFKA_HOST_NAME: kafka
+      AWS_SES_ACCESS_KEY: <<update iam access key for s3>>
+      AWS_SES_SECRET_KEY: <<update iam secret key for s3>>
+      SMTP_AWS_ENDPOINT: email-smtp.us-east-1.amazonaws.com
+      SMTP_AWS_USERNAME: <<update smtp aws user name generated >>
+      SMTP_AWS_PASSWORD: <<update smtp aws password generated >>
+      SMTP_AWS_FROMEMAIL: <<update verified email id in ses >>
+    depends_on:
+      - eureka-server
+      - kafka
+
+  eureka-server:
+    build: eureka-server
+    container_name: eureka-server
+    image: bookmyconsultation/eureka-server:1.0.0
+    ports:
+      - "8761:8761" # Map the exposed port 3000 on container to port 3000 on the host machine
+    networks:
+      - bookmyconsulationnet
+    environment:
+      EUREKA_HOST_NAME: eureka-server
+
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8
+    ports:
+      - "2181:2181"
+    networks:
+      - bookmyconsulationnet
+    volumes:
+      - "zookeeper_data:/bitnami"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka:
+    image: docker.io/bitnami/kafka:3.1
+    ports:
+      - "9092:9092"
+    networks:
+      - bookmyconsulationnet
+    volumes:
+      - "kafka_data:/bitnami"
+    environment:
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+
+networks:
+  bookmyconsulationnet:
+    driver: bridge
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
